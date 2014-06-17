@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+	<datasource jndi-name="java:jboss/datasources/quatroestacoes"
+		pool-name="quatroestacoes" enabled="true" use-java-context="true" jta="true"
+		use-ccm="true">
+
+        <connection-url>jdbc:mysql://localhost:3306/quatroestacoes</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <driver>mysql</driver>
+
+
+		<pool>
+			<min-pool-size>2</min-pool-size>
+			<max-pool-size>20</max-pool-size>
+			<prefill>true</prefill>
+		</pool>
+
+        <security>
+            <user-name>root</user-name>
+            <password>root</password>
+        </security>
+
+    </datasource>
+	
+</datasources>
+
+ 

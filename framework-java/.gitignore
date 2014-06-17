@@ -1,0 +1,5 @@
+# IGNORE DO FRAMEWORK
+target
+.classpath
+.project
+.settings

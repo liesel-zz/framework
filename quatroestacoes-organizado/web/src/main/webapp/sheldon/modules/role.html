@@ -1,0 +1,134 @@
+
+<!-- Black block starts -->
+<div class="blue-block">
+	<div class="page-title">
+		<h3 class="pull-left">
+			<i class="fa fa-desktop"></i> Segurança <span>Cadastro de
+				Regras</span>
+		</h3>
+		<div class="breads pull-right">
+			<a href="#">System </a>/ <a href="#">Security </a>/ Roles
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- Black block ends -->
+
+<!-- Content starts -->
+
+<div class="container">
+	<div class="page-content page-tables">
+
+		<div class="well">
+			<h5>
+				<i class="fa fa-search"></i> Search
+			</h5>
+			<p>Search roles by role</p>
+			<!-- Search form -->
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<input type="text" ng-model="filter.role" class="form-control"
+						id="search" placeholder="Type Something...">
+				</div>
+				<button class="btn btn-default" ng-click="findByFilter()">Search</button>
+			</form>
+		</div>
+
+		<div class="widget">
+			<div class="widget-head">
+				<h5>Regras</h5>
+			</div>
+			<div class="widget-body no-padd">
+
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered ">
+						<thead>
+							<tr>
+								<th>Role</th>
+								<th>Descrição</th>
+								<th>Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="role in roles | orderBy:orderBy">
+								<td>{{role.role}}</td>
+								<td>{{role.description}}</td>
+								<td><a class="btn btn-xs btn-success" ng-click="edit(role)"
+									data-toggle="modal" role="button"> <i class="fa fa-pencil"></i>
+								</a>
+									<button class="btn btn-xs btn-danger"
+										ng-click="confirmDelete(role)">
+										<i class="fa fa-times"></i>
+									</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="widget-foot">
+				<div class="pull-left">
+					<button type="submit" class="btn btn-info btn-xs" ng-click="add()">New</button>
+				</div>
+
+				<pagination class="pagination-sm pull-right" direction-links="true"
+					boundary-links="true" total-items="filter.count"
+					page="filter.startRow" items-per-page="filter.pageSize"
+					previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+					last-text="&raquo;"></pagination>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- MODAL -->
+<script type="text/ng-template" id="modalRole">
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal"
+		ng-click="cancel()" aria-hidden="true">x</button>
+	<h4 class="modal-title">Manutenção de Regras</h4>
+</div>
+<div class="modal-body">
+	<form class="form-horizontal" role="form">
+
+		<!-- ROLE -->
+		<div class="form-group" ng-class="{'error':errors.role.length > 0}">
+			<label class="col-lg-2 control-label">Role</label>
+			<div class="col-lg-10">
+				<input size="16" type="text" class="form-control"
+					placeholder="Role" ng-model="role.role" />
+				<div class="alert alert-warning" ng-show="errors.role">{{errors.role}}</div>
+			</div>
+		</div>
+
+		<!-- DESCRIPTION -->
+		<div class="form-group" ng-class="{'error':errors.description.length > 0}">
+			<label class="col-lg-2 control-label">Descrição</label>
+			<div class="col-lg-10">
+				<input size="255" type="text" class="form-control"
+					placeholder="Descrição" ng-model="role.description" />
+				<div class="alert alert-warning" ng-show="errors.role">{{errors.description}}</div>
+			</div>
+		</div>
+
+		<!-- ERRORS -->
+		<!-- We output a list of success messages (appropriately styled!) for the form. -->
+		<ul ng-hide="!successMessages" class="success">
+			<li ng-repeat="message in successMessages">{{message}}</li>
+		</ul>
+
+		<!-- Output the list of error messages if any. -->
+		<ul ng-hide="!errorMessages" class="error">
+			<li ng-repeat="message in errorMessages">{{message}}</li>
+		</ul>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default btn-sm"
+		data-dismiss="modal" aria-hidden="true" ng-click="cancel()">Close</button>
+	<button type="button" class="btn btn-primary btn-sm" ng-click="save()">Save
+		changes</button>
+</div>
+</script>
+<!-- Content ends -->

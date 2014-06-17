@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: javax.jws:jsr181-api:1.0-MR1-redhat-2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/jws/jsr181-api/1.0-MR1-redhat-2/jsr181-api-1.0-MR1-redhat-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/jws/jsr181-api/1.0-MR1-redhat-2/jsr181-api-1.0-MR1-redhat-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/jws/jsr181-api/1.0-MR1-redhat-2/jsr181-api-1.0-MR1-redhat-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

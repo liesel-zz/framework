@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/base-ejb/base-ejb.iml" filepath="$PROJECT_DIR$/base-ejb/base-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base-web/base-web.iml" filepath="$PROJECT_DIR$/base-web/base-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framework.iml" filepath="$PROJECT_DIR$/framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent/framework-parent.iml" filepath="$PROJECT_DIR$/parent/framework-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent/ear/framework-parent-ear.iml" filepath="$PROJECT_DIR$/parent/ear/framework-parent-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent/ejb/framework-parent-ejb.iml" filepath="$PROJECT_DIR$/parent/ejb/framework-parent-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent/web/framework-parent-web.iml" filepath="$PROJECT_DIR$/parent/web/framework-parent-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/layout/layout.iml" filepath="$PROJECT_DIR$/layout/layout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/security/security.iml" filepath="$PROJECT_DIR$/security/security.iml" />
+    </modules>
+  </component>
+</project>
+

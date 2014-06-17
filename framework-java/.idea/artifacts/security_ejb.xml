@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="security:ejb">
+    <output-path>$PROJECT_DIR$/security/target</output-path>
+    <root id="archive" name="security-0.0.1-SNAPSHOT.jar">
+      <element id="artifact" artifact-name="security:ejb exploded" />
+    </root>
+  </artifact>
+</component>

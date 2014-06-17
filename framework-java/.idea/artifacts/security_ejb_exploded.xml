@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="security:ejb exploded">
+    <output-path>$PROJECT_DIR$/security/target/security-0.0.1-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="security/ejb/EJB" />
+      <element id="module-output" name="security" />
+    </root>
+  </artifact>
+</component>

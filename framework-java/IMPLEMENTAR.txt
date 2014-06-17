@@ -1,0 +1,5 @@
+
+
+Implementar JasperComo Modulo.
+https://community.jboss.org/thread/197600
+http://stackoverflow.com/questions/13868061/jboss-7-1-1-final-jasperreports-4-0-2-as-a-module

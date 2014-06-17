@@ -1,0 +1,195 @@
+
+<!-- Black block starts -->
+<div class="blue-block">
+	<div class="page-title">
+		<h3 class="pull-left">
+			<i class="fa fa-desktop"></i> Segurança <span>Cadastro de
+				Usuários</span>
+		</h3>
+		<div class="breads pull-right">
+			<a href="#">System </a>/ <a href="#">Security </a>/ Users
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- Black block ends -->
+
+<!-- Content starts -->
+
+<div class="container">
+	<div class="page-content page-tables">
+
+		<div class="well">
+			<h5>
+				<i class="fa fa-search"></i> Search
+			</h5>
+			<p>Search users by name</p>
+			<!-- Search form -->
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<input type="text" ng-model="filter.name" class="form-control"
+						id="search" placeholder="Type Something...">
+				</div>
+				<button class="btn btn-default" ng-click="findByFilter()">Search</button>
+			</form>
+		</div>
+
+		<div class="widget">
+			<div class="widget-head">
+				<h5>Usuários</h5>
+			</div>
+			<div class="widget-body no-padd">
+
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered ">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nome</th>
+								<th>Email</th>
+								<th>Status</th>
+								<th>Último Login</th>
+								<th>Aniversário</th>
+								<th>Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="user in users | orderBy:orderBy">
+								<td>{{user.id}}</td>
+								<td>{{user.name}}</td>
+								<td>{{user.email}}</td>
+								<td ng-switch="user.status"><span ng-switch-when="0"
+									class="label label-danger">Banned</span> <span
+									ng-switch-when="1" class="label label-success">Active</span></td>
+								<td>{{user.lastLogin}}</td>
+								<td>{{user.birthDay}}</td>
+								<td><a class="btn btn-xs btn-success" ng-click="edit(user)"
+									data-toggle="modal" role="button"> <i class="fa fa-pencil"></i>
+								</a>
+									<button class="btn btn-xs btn-danger"
+										ng-click="confirmDelete(user)">
+										<i class="fa fa-times"></i>
+									</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="widget-foot">
+				<div class="pull-left">
+					<button type="submit" class="btn btn-info btn-xs" ng-click="add()">New</button>
+				</div>
+
+				<pagination class="pagination-sm pull-right" direction-links="true"
+					boundary-links="true" total-items="filter.count"
+					page="filter.startRow" items-per-page="filter.pageSize"
+					previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+					last-text="&raquo;"></pagination>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- MODAL -->
+<script type="text/ng-template" id="modalUser">
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal"
+		ng-click="cancel()" aria-hidden="true">x</button>
+	<h4 class="modal-title">Manutenção de Usuários</h4>
+</div>
+<div class="modal-body">
+	<form class="form-horizontal" role="form">
+
+		<!-- EMAIL -->
+		<div class="form-group" ng-class="{'error':errors.email.length > 0}">
+			<label class="col-lg-2 control-label">E-mail</label>
+			<div class="col-lg-10">
+				<input id="emailInput" type="email" class="form-control"
+					placeholder="sample@sample.com" ng-model="user.email"
+					ng-disabled="isEditing" />
+				<div class="alert alert-warning" ng-show="errors.email">{{errors.email}}</div>
+			</div>
+		</div>
+
+		<!-- NAME -->
+		<div class="form-group" ng-class="{'error':errors.name.length > 0}">
+			<label class="col-lg-2 control-label">Name</label>
+			<div class="col-lg-10">
+				<input size="16" type="text" class="form-control"
+					placeholder="Name and SubName" ng-model="user.name" />
+				<div class="alert alert-warning" ng-show="errors.name">{{errors.name}}</div>
+			</div>
+		</div>
+
+		<!-- PASSWORD -->
+		<div class="form-group"
+			ng-class="{'error':errors.password.length > 0}">
+			<label class="col-lg-2 control-label">Password</label>
+			<div class="col-lg-10">
+				<input size="512" type="password" class="form-control"
+					placeholder="sample@123" ng-model="user.password" />
+				<div class="alert alert-warning" ng-show="errors.password">{{errors.password}}</div>
+			</div>
+		</div>
+
+		<!-- STATUS -->
+		<div class="form-group" ng-class="{'error':errors.status.length > 0}">
+			<label class="col-lg-2 control-label">Status</label>
+			<div class="col-lg-10">
+				<input size="1" type="number" class="form-control"
+					placeholder="1 = active, 0 = banned" ng-model="user.status" />
+				<div class="alert alert-warning" ng-show="errors.status">{{errors.status}}</div>
+			</div>
+		</div>
+
+		<!-- BIRTHDAY -->
+		<div class="form-group"
+			ng-class="{'error':errors.birthDay.length > 0}">
+			<label class="col-lg-2 control-label">BirthDay</label>
+			<div class="col-lg-10">
+				<input size="1" type="date" class="form-control"
+					placeholder="BirthDay" ng-model="user.birthDay" />
+				<div class="alert alert-warning" ng-show="errors.birthDay">{{errors.birthDay}}</div>
+			</div>
+		</div>
+
+		<!-- ROLES -->
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Roles</label>
+			<div class="col-lg-10">
+				<input id="roleInput" ui-select2="rolesFKOpt"
+					ng-model="user.listRoles" type="hidden" />
+			</div>
+		</div>
+
+		<!-- PLAN -->
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Plan</label>
+			<div class="col-lg-10">
+				<input id="planInput" ui-select2="plansFKOpt" ng-model="user.plan"
+					type="hidden" />
+			</div>
+		</div>
+
+		<!-- ERRORS -->
+		<!-- We output a list of success messages (appropriately styled!) for the form. -->
+		<ul ng-hide="!successMessages" class="success">
+			<li ng-repeat="message in successMessages">{{message}}</li>
+		</ul>
+
+		<!-- Output the list of error messages if any. -->
+		<ul ng-hide="!errorMessages" class="error">
+			<li ng-repeat="message in errorMessages">{{message}}</li>
+		</ul>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default btn-sm"
+		data-dismiss="modal" aria-hidden="true" ng-click="cancel()">Close</button>
+	<button type="button" class="btn btn-primary btn-sm" ng-click="save()">Save
+		changes</button>
+</div>
+</script>
+<!-- Content ends -->
